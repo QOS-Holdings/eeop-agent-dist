@@ -36,15 +36,21 @@ All three scripts pin **the same** package hash and the same three binary hashes
 fails CI if they ever disagree — preparation once installed the canonical package while enrollment still
 expected the superseded one, which made a correctly prepared host unenrollable at the moment it mattered.
 
-There is **one canonical package**, `gatec-d328f14`, and every script uses it: it carries the enrollment and
+There is **one canonical package**, `mon1112-cfc9c32`, and every script uses it: it carries the enrollment and
 signed-authentication paths Gate 4 proves *and* the heartbeat worker Gate 5 proves, it collects the core,
-software, Windows servicing, identity and Windows service inventories, and it runs as a Windows service
-installed under Program Files, so the host that enrolls is byte-for-byte the host that heartbeats. The earlier
-`gateb1-ff7a8cd`, `ws3b-524a915`, `gate5-ede0a4d` and `gate4-fcea97b` packages are superseded — the first
-predates the Windows service inventory collector, the second the software, servicing and identity collectors,
-the third the service and the Program Files installation, the fourth the heartbeat worker as well — and their
-hashes stay recorded in `SHA256SUMS.txt`, with their releases still published, so the earlier evidence remains
-verifiable, not so they can be run again.
+software, Windows servicing, identity and Windows service inventories, it collects the Sprint 11 performance
+and Sprint 12 availability telemetry no earlier package could, and it runs as a Windows service installed under
+Program Files, so the host that enrolls is byte-for-byte the host that heartbeats. The earlier
+`gatec-d328f14`, `gateb1-ff7a8cd`, `ws3b-524a915`, `gate5-ede0a4d` and `gate4-fcea97b` packages are
+superseded — the first predates the performance and availability collectors, the second the Windows service
+inventory collector, the third the software, servicing and identity collectors, the fourth the service and the
+Program Files installation, the fifth the heartbeat worker as well — and their hashes stay recorded in
+`SHA256SUMS.txt`, with their releases still published, so the earlier evidence remains verifiable, not so they
+can be run again.
+
+`gatec-d328f14` is also what the enrolled protected host still runs: an already-enrolled host is upgraded only
+under its own separate authorization, so a package being canonical here says what a new installation gets, not
+what every host is running.
 
 ## Canonical validation host
 

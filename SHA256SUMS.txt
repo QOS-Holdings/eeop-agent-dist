@@ -1,21 +1,36 @@
-# Canonical agent package (eeop-platform d328f14, release gatec-d328f14)
-# The artifact the Gate C rotation published: the agent runs as a Windows service, installs into Program
-# Files without costing a host the device identity and state it already has, and collects every inventory
-# merged through Sprint 10 — core, software, Windows servicing, identity and Windows service inventory — as
-# well as carrying the enrollment path Gate 4 proves and the heartbeat worker Gate 5 proves. One build, one
-# host, one set of hashes.
-78ba0bf1c6545ef1541005e8ba76f2c51771cdc6289ea964bc6cad4a29dd35db  eeop-agent-win-x64.zip
-9f5aee01ef28550898ea98e89a17e2defa3c9069bcd8fcc3ad5d856ead355296  eeop-agent.exe
-b92f94612e6629e40b87af0a6797cfc2db759c88462bfb5906e3ecb92dbd973e  eeop-agent.dll
-62450ccfcc2103c68b7df23b566a5ce41fa4197931caf7d6b21581fea737d580  EEOP.Contracts.dll
+# Canonical agent package (eeop-platform cfc9c32, release mon1112-cfc9c32)
+# The artifact the Sprint 11-12 monitoring rotation published: everything the Gate C artifact did — the
+# Windows service, the Program Files installation that keeps a host's device identity and state, the
+# enrollment path Gate 4 proves, the heartbeat worker Gate 5 proves, and every inventory merged through
+# Sprint 10 — plus Sprint 11 performance collection and Sprint 12 availability collection, whose boot
+# sessions come from the kernel's own boot record. One build, one host, one set of hashes.
+eeab2d89f9367cce63d53e342ce9a64eb83bf993f03effcd3e90147730e8a4f0  eeop-agent-win-x64.zip
+c1c4056a6938eed92a2799b8d6f9b20cd4b2f23c768882fa5cd9f90e70e34819  eeop-agent.exe
+0e0169f8845d3593e8136e03ab517d2a8ab602eee9139c0c124fc094747a8f3c  eeop-agent.dll
+6082028120ec7bdc3c4d9263ba6f4b85244804f607fc3746d2c0f4a8ad35d0d1  EEOP.Contracts.dll
+
+# Release assets published alongside the package, from the same approved candidate
+f330954bcb1b2833ea7f1a70d5e8264202823c4186e346cf4425b534b09923e0  EEOP-Agent-Install.ps1
+e7e351474c492f246032b8d56db444ac174a19a24ace18de1f738aeac5ad07e9  EEOP-Agent-Service.ps1
 
 # Scripts, current — for the Windows Server 2025 canonical host
-6923475e4c4dbb7b85021e25b6e50a97c208883802d91e00beb44b4d2361eb5f  EEOP-Gate4-Prepare.ps1
-81b2397d880d8cc2fb14a7b9642dc72056e61f2c0b9a1ff2f447d3d6ec6fe2d2  EEOP-Gate4-Enroll.ps1
-1ae00c40f430cab880bf619d806ed9e5b152e638b311a4dce6c016fdf012dcfd  EEOP-Gate5-Heartbeat.ps1
+2194a0cbd57b36c333c39a801bbe012f2eb5a96c153bb6ff6eb2b401621950ee  EEOP-Gate4-Prepare.ps1
+af98f9106573902da363906e3770cbce6c137074bdcc8b922983728bd9adcd13  EEOP-Gate4-Enroll.ps1
+3a5a4201358d0274779be24686a2373f7a8947a1f1e01d243d8bfb9f35e7e186  EEOP-Gate5-Heartbeat.ps1
 
 # Superseded, kept so earlier evidence stays verifiable. Do not run these.
-# gateb1-ff7a8cd package (eeop-platform ff7a8cd), superseded by the Gate C rotation: it predates the Windows
+# gatec-d328f14 package (eeop-platform d328f14), superseded by the Sprint 11-12 monitoring rotation: it
+# predates the performance and availability collectors, so a host running it reports inventory and nothing it
+# is asked to monitor. Its release remains published, and it is what EEOP-SRV2025-01 still runs.
+#   78ba0bf1c6545ef1541005e8ba76f2c51771cdc6289ea964bc6cad4a29dd35db  eeop-agent-win-x64.zip
+#   9f5aee01ef28550898ea98e89a17e2defa3c9069bcd8fcc3ad5d856ead355296  eeop-agent.exe
+#   b92f94612e6629e40b87af0a6797cfc2db759c88462bfb5906e3ecb92dbd973e  eeop-agent.dll
+#   62450ccfcc2103c68b7df23b566a5ce41fa4197931caf7d6b21581fea737d580  EEOP.Contracts.dll
+# Scripts as they stood while they pinned that package:
+#   6923475e4c4dbb7b85021e25b6e50a97c208883802d91e00beb44b4d2361eb5f  EEOP-Gate4-Prepare.ps1
+#   81b2397d880d8cc2fb14a7b9642dc72056e61f2c0b9a1ff2f447d3d6ec6fe2d2  EEOP-Gate4-Enroll.ps1
+#   1ae00c40f430cab880bf619d806ed9e5b152e638b311a4dce6c016fdf012dcfd  EEOP-Gate5-Heartbeat.ps1
+# gateb1-ff7a8cd package (eeop-platform ff7a8cd), superseded by the Gate C rotation: it predated the Windows
 # service inventory collector, so a host running it leaves the Console's Services view empty. Its release
 # remains published.
 #   82c4a3354fda759a454c266091df1b4cf77f98f4d10481f1b8936b7754b80eac  eeop-agent-win-x64.zip
