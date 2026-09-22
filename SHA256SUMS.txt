@@ -1,24 +1,38 @@
-# Canonical agent package (eeop-platform e3d3137, release health15-e3d3137)
-# The artifact the Sprint 15 Agent Health rotation published: everything the Sprint 11-12 monitoring
-# artifact did — the Windows service, the Program Files installation that keeps a host's device identity
-# and state, the enrollment path Gate 4 proves, the heartbeat worker Gate 5 proves, every inventory merged
-# through Sprint 10, Sprint 11 performance collection and Sprint 12 availability collection — plus
-# Sprint 15 signed agent-health publication. One build, one host, one set of hashes.
-e3e395e525209c40c4369146924152fb4b1302d20fd326c5c48fe79763e9321f  eeop-agent-win-x64.zip
-42f7699e0b5654ea993726eaccdb76fcf8561d81377eeb896bfba4c9e33828ec  eeop-agent.exe
-a2e3c76dfa2d2a465838cb64fd9336848a2f633933eec5cfd1b3e998f9160d85  eeop-agent.dll
-8c688e70f6dfee4f42a75393ea7379571e027ae5cc332e14baf4c9770f2adbbe  EEOP.Contracts.dll
+# Canonical agent package (eeop-platform 3ae41e1, release fleet2021-3ae41e1)
+# The artifact the Sprints 20-21 rotation published: everything the Sprint 15 Agent Health artifact did — the
+# Windows service, the Program Files installation that keeps a host's device identity and state, the
+# enrollment path Gate 4 proves, the heartbeat worker Gate 5 proves, every inventory merged through
+# Sprint 10, Sprint 11 performance collection, Sprint 12 availability collection and Sprint 15 signed
+# agent-health publication — plus Sprint 20 effective-configuration retrieval, application and reporting,
+# and Sprint 21 on-demand collection performed with the collectors it already runs and published as its own
+# collection-requests agent-health module. One build, one host, one set of hashes.
+d0e1feb570fd07f711790ddce974ff001fb43141377bd01a3b5245576bbdcf8e  eeop-agent-win-x64.zip
+08f92a5bbbedb35ae6c22b7e3d16124be7b019952337de413c11303d007c0b91  eeop-agent.exe
+4d440daa74c54f8d49f77af95e6c7c028b0c157126376764694edb4f0120454e  eeop-agent.dll
+b58e70ab6e9cd43dd8bd1623de69abfeb4ba1db7a568674641743183f0aa0dd5  EEOP.Contracts.dll
 
 # Release assets published alongside the package, from the same approved candidate
 f330954bcb1b2833ea7f1a70d5e8264202823c4186e346cf4425b534b09923e0  EEOP-Agent-Install.ps1
 e7e351474c492f246032b8d56db444ac174a19a24ace18de1f738aeac5ad07e9  EEOP-Agent-Service.ps1
 
 # Scripts, current — for the Windows Server 2025 canonical host
-58d632bb9d8603b10b69fb238946d79d8a429d5f21c41327d44f27e82be5afe0  EEOP-Gate4-Prepare.ps1
-ba4ffd72eb915a1e6de0a8a585062c6b768d7db9020a082cd95a351477f743b7  EEOP-Gate4-Enroll.ps1
-78b0a300d3c74b3f5fe8a984edf3017005cb5b151b18d334ce57d2bd9a002513  EEOP-Gate5-Heartbeat.ps1
+5578db3780e6f9ee0c383bb48bbe7aa889fefcd9451adaf0d2042ff5da38ab5e  EEOP-Gate4-Prepare.ps1
+61f97e0a2130fb5f760045cd75454170971f094cbb099e0108569336aaaeff2e  EEOP-Gate4-Enroll.ps1
+ff351b3164c9fd8bd4f5522018f73cfe993e841feb7ceffdc6f4823537ee7880  EEOP-Gate5-Heartbeat.ps1
 
 # Superseded, kept so earlier evidence stays verifiable. Do not run these.
+# health15-e3d3137 package (eeop-platform e3d3137), superseded by the Sprints 20-21 rotation: it predates
+# effective-configuration application and reporting and on-demand collection, so a host running it answers no
+# configuration and no collection request. Its release remains published, and it is what the already-enrolled
+# hosts still run, since publishing and pinning a package upgrades nothing that is already enrolled.
+#   e3e395e525209c40c4369146924152fb4b1302d20fd326c5c48fe79763e9321f  eeop-agent-win-x64.zip
+#   42f7699e0b5654ea993726eaccdb76fcf8561d81377eeb896bfba4c9e33828ec  eeop-agent.exe
+#   a2e3c76dfa2d2a465838cb64fd9336848a2f633933eec5cfd1b3e998f9160d85  eeop-agent.dll
+#   8c688e70f6dfee4f42a75393ea7379571e027ae5cc332e14baf4c9770f2adbbe  EEOP.Contracts.dll
+# Scripts as they stood while they pinned that package:
+#   58d632bb9d8603b10b69fb238946d79d8a429d5f21c41327d44f27e82be5afe0  EEOP-Gate4-Prepare.ps1
+#   ba4ffd72eb915a1e6de0a8a585062c6b768d7db9020a082cd95a351477f743b7  EEOP-Gate4-Enroll.ps1
+#   78b0a300d3c74b3f5fe8a984edf3017005cb5b151b18d334ce57d2bd9a002513  EEOP-Gate5-Heartbeat.ps1
 # mon1112-cfc9c32 package (eeop-platform cfc9c32), superseded by the Sprint 15 Agent Health rotation: it
 # predates signed agent-health publication, so a host running it reports no agent health at all. Its
 # release remains published.
@@ -32,7 +46,7 @@ ba4ffd72eb915a1e6de0a8a585062c6b768d7db9020a082cd95a351477f743b7  EEOP-Gate4-Enr
 #   3a5a4201358d0274779be24686a2373f7a8947a1f1e01d243d8bfb9f35e7e186  EEOP-Gate5-Heartbeat.ps1
 # gatec-d328f14 package (eeop-platform d328f14), superseded by the Sprint 11-12 monitoring rotation: it
 # predates the performance and availability collectors, so a host running it reports inventory and nothing it
-# is asked to monitor. Its release remains published, and it is what EEOP-SRV2025-01 still runs.
+# is asked to monitor. Its release remains published, and nothing that runs pins it.
 #   78ba0bf1c6545ef1541005e8ba76f2c51771cdc6289ea964bc6cad4a29dd35db  eeop-agent-win-x64.zip
 #   9f5aee01ef28550898ea98e89a17e2defa3c9069bcd8fcc3ad5d856ead355296  eeop-agent.exe
 #   b92f94612e6629e40b87af0a6797cfc2db759c88462bfb5906e3ecb92dbd973e  eeop-agent.dll

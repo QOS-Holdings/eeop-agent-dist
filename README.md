@@ -36,22 +36,32 @@ All three scripts pin **the same** package hash and the same three binary hashes
 fails CI if they ever disagree — preparation once installed the canonical package while enrollment still
 expected the superseded one, which made a correctly prepared host unenrollable at the moment it mattered.
 
-There is **one canonical package**, `health15-e3d3137`, and every script uses it: it carries the enrollment and
+There is **one canonical package**, `fleet2021-3ae41e1`, and every script uses it: it carries the enrollment and
 signed-authentication paths Gate 4 proves *and* the heartbeat worker Gate 5 proves, it collects the core,
 software, Windows servicing, identity and Windows service inventories, it collects the Sprint 11 performance
-and Sprint 12 availability telemetry, it publishes the Sprint 15 signed agent-health reports no earlier package
-could, and it runs as a Windows service installed under Program Files, so the host that enrolls is
-byte-for-byte the host that heartbeats. The earlier `mon1112-cfc9c32`, `gatec-d328f14`, `gateb1-ff7a8cd`,
-`ws3b-524a915`, `gate5-ede0a4d` and `gate4-fcea97b` packages are superseded — the first predates signed
-agent-health publication, the second the performance and availability collectors, the third the Windows
-service inventory collector, the fourth the software, servicing and identity collectors, the fifth the service
-and the Program Files installation, the sixth the heartbeat worker as well — and their hashes stay recorded in
-`SHA256SUMS.txt`, with their releases still published, so the earlier evidence remains verifiable, not so they
-can be run again.
+and Sprint 12 availability telemetry, it publishes the Sprint 15 signed agent-health reports, and, new to it,
+it retrieves its effective configuration from the platform, applies it and reports what it did with it
+(Sprint 20), and performs a collection somebody asked for, on demand, with the collectors it already runs and
+without accepting any command, script, path or argument from the platform (Sprint 21). On-demand poll and
+execution cycles are published as their own `collection-requests` Agent Health module, so a failing poll cannot
+hide behind a successful health self-report or the other way round. It runs as a Windows service installed
+under Program Files, so the host that enrolls is byte-for-byte the host that heartbeats.
 
-`gatec-d328f14` is also what the enrolled protected host still runs: an already-enrolled host is upgraded only
-under its own separate authorization, so a package being canonical here says what a new installation gets, not
-what every host is running.
+The earlier `health15-e3d3137`, `mon1112-cfc9c32`, `gatec-d328f14`, `gateb1-ff7a8cd`, `ws3b-524a915`,
+`gate5-ede0a4d` and `gate4-fcea97b` packages are superseded — the first predates configuration apply-and-report
+and on-demand collection, the second signed agent-health publication, the third the performance and
+availability collectors, the fourth the Windows service inventory collector, the fifth the software, servicing
+and identity collectors, the sixth the service and the Program Files installation, the seventh the heartbeat
+worker as well — and their hashes stay recorded in `SHA256SUMS.txt`, with their releases still published, so the
+earlier evidence remains verifiable, not so they can be run again.
+
+`health15-e3d3137` is also what the enrolled hosts still run: publishing a package here, and pinning it, says
+what a new preparation, enrollment or fresh installation gets — it upgrades nothing that is already enrolled.
+An already-enrolled host is upgraded only under its own separate authorization, and no such upgrade or field
+acceptance is claimed by this publication.
+
+The platform must know the `collection-requests` Agent Health module before a host installed from this package
+emits it, so server support for it is deployed before this agent is installed anywhere it reports to.
 
 ## Canonical validation host
 
