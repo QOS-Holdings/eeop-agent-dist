@@ -142,15 +142,15 @@ $ProgressPreference = 'SilentlyContinue'
 # a device private key is not a thing to shrug at.
 # The canonical build is a superset of what any one gate needs, so preparing a host with it means the host
 # that enrolls is the host that heartbeats, verified against one set of hashes rather than two.
-$ExpectedPackageHash = 'd0e1feb570fd07f711790ddce974ff001fb43141377bd01a3b5245576bbdcf8e'
+$ExpectedPackageHash = 'b34fae7fdfffd67cfb96e489ea32d92be85a3348036ff155bfd45c2f2f6583ca'
 $ExpectedBinaryHashes = [ordered]@{
-    'eeop-agent.exe'     = '08f92a5bbbedb35ae6c22b7e3d16124be7b019952337de413c11303d007c0b91'
-    'eeop-agent.dll'     = '4d440daa74c54f8d49f77af95e6c7c028b0c157126376764694edb4f0120454e'
-    'EEOP.Contracts.dll' = 'b58e70ab6e9cd43dd8bd1623de69abfeb4ba1db7a568674641743183f0aa0dd5'
+    'eeop-agent.exe'     = '11101c1939fb1fd5e0034a4142f74cf5f14b82409a555fb10bfdc7dc96c11c43'
+    'eeop-agent.dll'     = 'd68a612e5901577039c528dd4d8ec8d6d65e848517597c7f4c0a4b1fb394fbb9'
+    'EEOP.Contracts.dll' = '639c18949b91897cec428bdf3d59573168f5d1d083fc5b0a80a1efc872f31dd0'
 }
-$AgentCommit = '3ae41e19607a58dbf13c77da92c9ea168a2c0eab'
+$AgentCommit = 'a0d1cbf595f6ad5445844f41a0558e167f455e2b'
 $PackageName = 'eeop-agent-win-x64.zip'
-$PackageUrl = 'https://github.com/QOS-Holdings/eeop-agent-dist/releases/download/fleet2021-3ae41e1/eeop-agent-win-x64.zip'
+$PackageUrl = 'https://github.com/QOS-Holdings/eeop-agent-dist/releases/download/fleet2225-a0d1cbf/eeop-agent-win-x64.zip'
 
 $Root = 'C:\ProgramData\EEOP'
 $WorkRoot = Join-Path $Root 'Gate4'
