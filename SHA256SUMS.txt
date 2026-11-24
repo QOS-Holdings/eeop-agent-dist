@@ -1,26 +1,40 @@
-# Canonical agent package (eeop-platform a0d1cbf, release fleet2225-a0d1cbf)
-# The artifact the Sprints 22-25 rotation published: everything fleet2021-3ae41e1 carried — the Windows
-# service, the Program Files installation that keeps a host's device identity and state, the enrollment path
-# Gate 4 proves, the heartbeat worker Gate 5 proves, every inventory, performance and availability collection,
-# signed agent-health publication, effective-configuration retrieval and on-demand collection — plus agent
-# self-upgrade (ADR 0028), the installer/enrollment-key/tray flow (ADR 0029), device classification sensing
-# (ADR 0031) and pending-updates collection behind its own consent gate (ADR 0032). One build, one host, one
-# set of hashes.
-b34fae7fdfffd67cfb96e489ea32d92be85a3348036ff155bfd45c2f2f6583ca  eeop-agent-win-x64.zip
-11101c1939fb1fd5e0034a4142f74cf5f14b82409a555fb10bfdc7dc96c11c43  eeop-agent.exe
-d68a612e5901577039c528dd4d8ec8d6d65e848517597c7f4c0a4b1fb394fbb9  eeop-agent.dll
-639c18949b91897cec428bdf3d59573168f5d1d083fc5b0a80a1efc872f31dd0  EEOP.Contracts.dll
+# Canonical agent package (eeop-platform ee0e435, release sign28-ee0e435)
+# The artifact the ROTATION-013 rotation published and forced to general availability: the
+# Sprints 26-28 line — everything fleet2225-a0d1cbf carried plus the production-signed MSI installer path
+# introduced at sign26-612d078. The MSI's hash and its Authenticode signing record are on the release itself
+# (eeop-agent.msi, msi-signing.json, release-candidate.json). One build, one host, one set of hashes.
+588cb87b1fc3224625fe74318a0cf18477eb1229c829dd5726468474eeb53ea5  eeop-agent-win-x64.zip
+bf883cf12c5ddc7979d2a1c7b1005fa5cf573605950b106e671334e3e0293dac  eeop-agent.exe
+59ae6cb41108a258a8eb12eeeb6cbaeb157c78e1d76b53f5f1a229f69c142dc1  eeop-agent.dll
+d8fa11141481bca77f56a36e546f1ca192f06307d62df1b83d0bd51aa0042a48  EEOP.Contracts.dll
 
 # Release assets published alongside the package, from the same approved candidate
-b8b988fbfe3d71e06917bc612fbcef1ebbb6e11be3ae438b8cd10f70a723193d  EEOP-Agent-Install.ps1
+5dfa925ae5279c5cd1635ec7cd013f70481e2a4765adb2bf47c9817b5073aa2a  EEOP-Agent-Install.ps1
 e7e351474c492f246032b8d56db444ac174a19a24ace18de1f738aeac5ad07e9  EEOP-Agent-Service.ps1
 
-# Scripts, current — for the Windows Server 2025 canonical host
-d770856eade94c11a7af096291fc942c170f33de5eb4005609cffb3c2bd206fa  EEOP-Gate4-Prepare.ps1
-b8c9a8da6ecea0ff92fe9222ee414ecd3e90a83718ead0fe9df0a499c894414d  EEOP-Gate4-Enroll.ps1
-19985032b32eeb631c634e2d04838ed90be57bfcd0eaf71426f756ff76699f7b  EEOP-Gate5-Heartbeat.ps1
+# Scripts, current (eeop-platform a6d43a96) — for the Windows Server 2025 canonical host, and the
+# preparation script now also accepts -ExpectedOperatingSystem Windows11 as an explicit opt-in for
+# workstation preparation; the operating system is never inferred from the host.
+422cf57203e4772ad1642f87580f49e96a3b51d87a38c703b972f3c3e341ed06  EEOP-Gate4-Prepare.ps1
+e92be55ba351fa502526cc5ec36bc11847f26bf71ea52e933e06fbb79b11e8ce  EEOP-Gate4-Enroll.ps1
+76b8e620b52f9fbfde5e4ec4ba0560d5d4d5e61b3c2100d22648843392df4eb1  EEOP-Gate5-Heartbeat.ps1
 
 # Superseded, kept so earlier evidence stays verifiable. Do not run these.
+# sign26-612d078 and sign27-4b484b4 (the Sprint 26 and Sprints 27-28 publications between fleet2225 and
+# sign28) were published as releases only, with no script rotation in this repository; their asset hashes
+# remain on their own releases' SHA256SUMS.txt.
+# fleet2225-a0d1cbf package (eeop-platform a0d1cbf), superseded by the production-signing line
+# (sign26-612d078 → sign27-4b484b4 → sign28-ee0e435): it predates the production-signed MSI installer
+# path. Its release remains published.
+#   b34fae7fdfffd67cfb96e489ea32d92be85a3348036ff155bfd45c2f2f6583ca  eeop-agent-win-x64.zip
+#   11101c1939fb1fd5e0034a4142f74cf5f14b82409a555fb10bfdc7dc96c11c43  eeop-agent.exe
+#   d68a612e5901577039c528dd4d8ec8d6d65e848517597c7f4c0a4b1fb394fbb9  eeop-agent.dll
+#   639c18949b91897cec428bdf3d59573168f5d1d083fc5b0a80a1efc872f31dd0  EEOP.Contracts.dll
+#   b8b988fbfe3d71e06917bc612fbcef1ebbb6e11be3ae438b8cd10f70a723193d  EEOP-Agent-Install.ps1
+# Scripts as they stood while they pinned that package:
+#   d770856eade94c11a7af096291fc942c170f33de5eb4005609cffb3c2bd206fa  EEOP-Gate4-Prepare.ps1
+#   b8c9a8da6ecea0ff92fe9222ee414ecd3e90a83718ead0fe9df0a499c894414d  EEOP-Gate4-Enroll.ps1
+#   19985032b32eeb631c634e2d04838ed90be57bfcd0eaf71426f756ff76699f7b  EEOP-Gate5-Heartbeat.ps1
 # fleet2021-3ae41e1 package (eeop-platform 3ae41e19), superseded by the Sprints 22-25 rotation: it predates
 # agent self-upgrade, the installer/enrollment-key/tray flow, device classification sensing and
 # pending-updates collection. Its release remains published. It is what the already-enrolled hosts still run

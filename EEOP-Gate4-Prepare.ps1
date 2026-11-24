@@ -11,10 +11,12 @@
     heartbeat worker Gate 5 proves, so a host is prepared once and needs no second agent installed later.
 
     The canonical validation host is Windows Server 2025 (a standalone server for the first validation), and
-    this package is pinned to it: the host name, the processor architecture, the operating system and the host
-    clock are all asserted before a byte is downloaded or extracted, so a command pasted into the wrong window
-    stops instead of installing an agent there. The agent is self-contained, so no runtime is installed, and
-    no build number is matched, because servicing changes it.
+    this package still defaults to it. Preparing a Windows 11 workstation requires the explicit
+    -ExpectedOperatingSystem Windows11 opt-in; the operating system is never inferred from the host. The host
+    name, the processor architecture, the operating system and the host clock are all asserted before a byte
+    is downloaded or extracted, so a command pasted into the wrong window stops instead of installing an
+    agent there. The agent is self-contained, so no runtime is installed, and no build number is matched,
+    because servicing changes it.
 
     It does not enroll, does not provision or read a token, does not install a service and does not start
     heartbeat work. It requires no .NET SDK, no .NET runtime and no Azure CLI.
@@ -34,6 +36,10 @@
     The one host this package prepares. The default is the canonical validation server, and a mismatch is a
     hard stop rather than a warning.
 
+.PARAMETER ExpectedOperatingSystem
+    Defaults to Windows Server 2025 and remains unchanged. Windows11 prepares a workstation lab host (product
+    type 1, caption Windows 11), must be passed deliberately, and is never inferred from the host.
+
 .PARAMETER ClockToleranceSeconds
     How far the host clock may sit from the platform's own clock. Deliberately tighter than the +/-300s the
     device authentication model allows, so a drifting clock is found here rather than after a single-use
@@ -44,6 +50,11 @@
 
 .EXAMPLE
     PS> .\EEOP-Gate4-Prepare.ps1
+
+.EXAMPLE
+    PS> .\EEOP-Gate4-Prepare.ps1 -ExpectedHostname EEOP-WIN11-01 -ExpectedOperatingSystem Windows11
+
+    EEOP-WIN11-01 is illustrative; pass the actual workstation name deliberately.
 #>
 
 [CmdletBinding()]
@@ -51,6 +62,7 @@ param(
     [string] $AgentPackage,
     [string] $PlatformUri = 'https://eeop-dev-ingestion-api.azurewebsites.net/',
     [string] $ExpectedHostname = 'EEOP-SRV2025-01',
+    [ValidateSet('WindowsServer2025', 'Windows11')] [string] $ExpectedOperatingSystem = 'WindowsServer2025',
     [int] $ClockToleranceSeconds = 120,
     [switch] $LoadFunctionsOnly
 )
@@ -107,6 +119,22 @@ function Test-EeopWindowsServer2025 {
     return [pscustomobject]@{ Ok = $ok; Value = $Caption; Message = $message }
 }
 
+function Test-EeopWindows11 {
+    param([string] $Caption, [int] $ProductType)
+
+    # Product type 1 is a workstation. The CIM caption names the release; only the registry ProductName keeps
+    # Microsoft's Windows 10 wording on Windows 11, and this reads the caption, so no build number is matched.
+    $isWorkstation = $ProductType -eq 1
+    $is11 = $Caption -match '(?i)\bwindows\s+11\b'
+    $ok = $isWorkstation -and $is11
+    $message = $null
+    if (-not $ok) {
+        $message = "This run was told to prepare a Windows 11 workstation (-ExpectedOperatingSystem Windows11), " +
+            "and this host reports '$Caption' (product type $ProductType). Nothing was downloaded, extracted or configured."
+    }
+    return [pscustomobject]@{ Ok = $ok; Value = $Caption; Message = $message }
+}
+
 function Get-EeopClockDifference {
     param([datetime] $PlatformUtc, [datetime] $HostUtc)
 
@@ -142,15 +170,15 @@ $ProgressPreference = 'SilentlyContinue'
 # a device private key is not a thing to shrug at.
 # The canonical build is a superset of what any one gate needs, so preparing a host with it means the host
 # that enrolls is the host that heartbeats, verified against one set of hashes rather than two.
-$ExpectedPackageHash = 'b34fae7fdfffd67cfb96e489ea32d92be85a3348036ff155bfd45c2f2f6583ca'
+$ExpectedPackageHash = '588cb87b1fc3224625fe74318a0cf18477eb1229c829dd5726468474eeb53ea5'
 $ExpectedBinaryHashes = [ordered]@{
-    'eeop-agent.exe'     = '11101c1939fb1fd5e0034a4142f74cf5f14b82409a555fb10bfdc7dc96c11c43'
-    'eeop-agent.dll'     = 'd68a612e5901577039c528dd4d8ec8d6d65e848517597c7f4c0a4b1fb394fbb9'
-    'EEOP.Contracts.dll' = '639c18949b91897cec428bdf3d59573168f5d1d083fc5b0a80a1efc872f31dd0'
+    'eeop-agent.exe'     = 'bf883cf12c5ddc7979d2a1c7b1005fa5cf573605950b106e671334e3e0293dac'
+    'eeop-agent.dll'     = '59ae6cb41108a258a8eb12eeeb6cbaeb157c78e1d76b53f5f1a229f69c142dc1'
+    'EEOP.Contracts.dll' = 'd8fa11141481bca77f56a36e546f1ca192f06307d62df1b83d0bd51aa0042a48'
 }
-$AgentCommit = 'a0d1cbf595f6ad5445844f41a0558e167f455e2b'
+$AgentCommit = 'ee0e4354a32cf5f5c2eac71564feeefd13a0d626'
 $PackageName = 'eeop-agent-win-x64.zip'
-$PackageUrl = 'https://github.com/QOS-Holdings/eeop-agent-dist/releases/download/fleet2225-a0d1cbf/eeop-agent-win-x64.zip'
+$PackageUrl = 'https://github.com/QOS-Holdings/eeop-agent-dist/releases/download/sign28-ee0e435/eeop-agent-win-x64.zip'
 
 $Root = 'C:\ProgramData\EEOP'
 $WorkRoot = Join-Path $Root 'Gate4'
@@ -294,9 +322,13 @@ catch {
         'validation server: {0}' -f (Get-SafeError $_))
     Complete-Run
 }
-Add-Result 'windows' ('{0} (version {1}, build {2}, product type {3})' -f
-    $os.Caption, $os.Version, $os.BuildNumber, $os.ProductType)
-$operatingSystem = Test-EeopWindowsServer2025 -Caption $os.Caption -ProductType $os.ProductType
+Add-Result 'windows' ('{0} (version {1}, build {2}, product type {3}; expected {4})' -f
+    $os.Caption, $os.Version, $os.BuildNumber, $os.ProductType, $ExpectedOperatingSystem)
+$operatingSystem = if ($ExpectedOperatingSystem -eq 'Windows11') {
+    Test-EeopWindows11 -Caption $os.Caption -ProductType $os.ProductType
+} else {
+    Test-EeopWindowsServer2025 -Caption $os.Caption -ProductType $os.ProductType
+}
 if (-not $operatingSystem.Ok) {
     Add-Failure $operatingSystem.Message
     Complete-Run
