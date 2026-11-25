@@ -40,13 +40,13 @@ $ProgressPreference = 'SilentlyContinue'
 # reuses, recorded in canonical-agent.json and asserted identical across all three scripts by
 # EEOP-CanonicalAgent.Tests.ps1. Checked again here because enrollment is the step that creates a private key:
 # the binary that generates it has to be the approved one at that moment, not merely at preparation time.
-$AgentCommit = 'ee0e4354a32cf5f5c2eac71564feeefd13a0d626'
+$AgentCommit = 'ebd9e0bf8129aac75c0bcd04b9abafb3ae0b0f1b'
 $PackageName = 'eeop-agent-win-x64.zip'
-$ExpectedPackageHash = '588cb87b1fc3224625fe74318a0cf18477eb1229c829dd5726468474eeb53ea5'
+$ExpectedPackageHash = '364d4059a24f5d0d11e05198ac7f399c1035dc5859386ebeb390f938d48e5153'
 $ExpectedBinaryHashes = [ordered]@{
-    'eeop-agent.exe'     = 'bf883cf12c5ddc7979d2a1c7b1005fa5cf573605950b106e671334e3e0293dac'
-    'eeop-agent.dll'     = '59ae6cb41108a258a8eb12eeeb6cbaeb157c78e1d76b53f5f1a229f69c142dc1'
-    'EEOP.Contracts.dll' = 'd8fa11141481bca77f56a36e546f1ca192f06307d62df1b83d0bd51aa0042a48'
+    'eeop-agent.exe'     = 'cc10206f76d742520cbcb0b92a6b1d2355bdf3ca97e169e5e3181b52e3d3a1c7'
+    'eeop-agent.dll'     = 'bffc40babc47ba09ba205bc22ec37449a52e354c4545235f384439c85834f972'
+    'EEOP.Contracts.dll' = '0641d868c871c07e8b7610237c2a76ca88dcd9331bc741471f46d5ddb4a0e6d8'
 }
 $ExpectedTokenLength = 43
 

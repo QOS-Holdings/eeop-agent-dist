@@ -1,28 +1,40 @@
-# Canonical agent package (eeop-platform ee0e435, release sign28-ee0e435)
-# The artifact the ROTATION-013 rotation published and forced to general availability: the
-# Sprints 26-28 line — everything fleet2225-a0d1cbf carried plus the production-signed MSI installer path
-# introduced at sign26-612d078. The MSI's hash and its Authenticode signing record are on the release itself
-# (eeop-agent.msi, msi-signing.json, release-candidate.json). One build, one host, one set of hashes.
-588cb87b1fc3224625fe74318a0cf18477eb1229c829dd5726468474eeb53ea5  eeop-agent-win-x64.zip
-bf883cf12c5ddc7979d2a1c7b1005fa5cf573605950b106e671334e3e0293dac  eeop-agent.exe
-59ae6cb41108a258a8eb12eeeb6cbaeb157c78e1d76b53f5f1a229f69c142dc1  eeop-agent.dll
-d8fa11141481bca77f56a36e546f1ca192f06307d62df1b83d0bd51aa0042a48  EEOP.Contracts.dll
+# Canonical agent package (eeop-platform ebd9e0b, release sign29-ebd9e0b)
+# The artifact the ROTATION-014 rotation published: the Sprints 27-28 agent line — tray V2 (both-themes
+# glyphs), offline-queue replay with 429 deferral and queue evidence counters, and the Q3 configuration
+# suspension/lease/410-401 client. The MSI's hash and its Authenticode signing record are on the release
+# itself (eeop-agent.msi, msi-signing.json, release-candidate.json). One build, one host, one set of hashes.
+364d4059a24f5d0d11e05198ac7f399c1035dc5859386ebeb390f938d48e5153  eeop-agent-win-x64.zip
+cc10206f76d742520cbcb0b92a6b1d2355bdf3ca97e169e5e3181b52e3d3a1c7  eeop-agent.exe
+bffc40babc47ba09ba205bc22ec37449a52e354c4545235f384439c85834f972  eeop-agent.dll
+0641d868c871c07e8b7610237c2a76ca88dcd9331bc741471f46d5ddb4a0e6d8  EEOP.Contracts.dll
 
-# Release assets published alongside the package, from the same approved candidate
+# Release assets published alongside the package, from the same approved candidate (both unchanged
+# since sign28)
 5dfa925ae5279c5cd1635ec7cd013f70481e2a4765adb2bf47c9817b5073aa2a  EEOP-Agent-Install.ps1
 e7e351474c492f246032b8d56db444ac174a19a24ace18de1f738aeac5ad07e9  EEOP-Agent-Service.ps1
 
-# Scripts, current (eeop-platform a6d43a96) — for the Windows Server 2025 canonical host, and the
-# preparation script now also accepts -ExpectedOperatingSystem Windows11 as an explicit opt-in for
+# Scripts, current (eeop-platform 1d55ab31) — for the Windows Server 2025 canonical host, and the
+# preparation script also accepts -ExpectedOperatingSystem Windows11 as an explicit opt-in for
 # workstation preparation; the operating system is never inferred from the host.
-422cf57203e4772ad1642f87580f49e96a3b51d87a38c703b972f3c3e341ed06  EEOP-Gate4-Prepare.ps1
-e92be55ba351fa502526cc5ec36bc11847f26bf71ea52e933e06fbb79b11e8ce  EEOP-Gate4-Enroll.ps1
-76b8e620b52f9fbfde5e4ec4ba0560d5d4d5e61b3c2100d22648843392df4eb1  EEOP-Gate5-Heartbeat.ps1
+c1f3a106ba87144b5e16d02372a54ef06c9f2f6652b60b4e84b6a57bda6439ef  EEOP-Gate4-Prepare.ps1
+a093392e9638bd19fa9ffa7c24472bc62e1a5d9a5a9a1d5a458a261e1c893f82  EEOP-Gate4-Enroll.ps1
+d758fbd0d2fd189d372409d71bf968b911adfdc47da1b00e86a07e12c7b37ff4  EEOP-Gate5-Heartbeat.ps1
 
 # Superseded, kept so earlier evidence stays verifiable. Do not run these.
+# sign28-ee0e435 package (eeop-platform ee0e4354), superseded by the ROTATION-014 rotation: its single
+# dark-styled tray glyph is illegible on a light Windows 11 flyout, and it predates the offline-queue
+# replay counters and the ruled configuration-lease lifecycle. Its release remains published.
+#   588cb87b1fc3224625fe74318a0cf18477eb1229c829dd5726468474eeb53ea5  eeop-agent-win-x64.zip
+#   bf883cf12c5ddc7979d2a1c7b1005fa5cf573605950b106e671334e3e0293dac  eeop-agent.exe
+#   59ae6cb41108a258a8eb12eeeb6cbaeb157c78e1d76b53f5f1a229f69c142dc1  eeop-agent.dll
+#   d8fa11141481bca77f56a36e546f1ca192f06307d62df1b83d0bd51aa0042a48  EEOP.Contracts.dll
+# Scripts as they stood while they pinned that package (eeop-platform a6d43a96, dist 1e1e0104):
+#   422cf57203e4772ad1642f87580f49e96a3b51d87a38c703b972f3c3e341ed06  EEOP-Gate4-Prepare.ps1
+#   e92be55ba351fa502526cc5ec36bc11847f26bf71ea52e933e06fbb79b11e8ce  EEOP-Gate4-Enroll.ps1
+#   76b8e620b52f9fbfde5e4ec4ba0560d5d4d5e61b3c2100d22648843392df4eb1  EEOP-Gate5-Heartbeat.ps1
 # sign26-612d078 and sign27-4b484b4 (the Sprint 26 and Sprints 27-28 publications between fleet2225 and
 # sign28) were published as releases only, with no script rotation in this repository; their asset hashes
-# remain on their own releases' SHA256SUMS.txt.
+# remain on their own releases' SHA256SUMS.txt. sign28-ee0e435's full record is above.
 # fleet2225-a0d1cbf package (eeop-platform a0d1cbf), superseded by the production-signing line
 # (sign26-612d078 → sign27-4b484b4 → sign28-ee0e435): it predates the production-signed MSI installer
 # path. Its release remains published.
