@@ -68,14 +68,14 @@ $ProgressPreference = 'SilentlyContinue'
 
 # The canonical agent build, which Gate 4 preparation installs and this reuses, pinned the same way in both:
 # the package hash before extraction, the binary hashes before execution.
-$AgentCommit = 'ebd9e0bf8129aac75c0bcd04b9abafb3ae0b0f1b'
+$AgentCommit = '225118e9efb370719597de0843a64841a9b89880'
 $PackageName = 'eeop-agent-win-x64.zip'
-$PackageUrl = 'https://github.com/QOS-Holdings/eeop-agent-dist/releases/download/sign29-ebd9e0b/eeop-agent-win-x64.zip'
-$ExpectedPackageHash = '364d4059a24f5d0d11e05198ac7f399c1035dc5859386ebeb390f938d48e5153'
+$PackageUrl = 'https://github.com/QOS-Holdings/eeop-agent-dist/releases/download/sign30-225118e/eeop-agent-win-x64.zip'
+$ExpectedPackageHash = 'c73baa424334315c4d84142bdb8a7de368fba39791571f08d1fd787df3fa30a2'
 $ExpectedBinaryHashes = [ordered]@{
-    'eeop-agent.exe'     = 'cc10206f76d742520cbcb0b92a6b1d2355bdf3ca97e169e5e3181b52e3d3a1c7'
-    'eeop-agent.dll'     = 'bffc40babc47ba09ba205bc22ec37449a52e354c4545235f384439c85834f972'
-    'EEOP.Contracts.dll' = '0641d868c871c07e8b7610237c2a76ca88dcd9331bc741471f46d5ddb4a0e6d8'
+    'eeop-agent.exe'     = '3fedcb0438031549bd6ee2dcd7109b80ed66a1508c399e3d1e3e9fc78cf2e775'
+    'eeop-agent.dll'     = 'cea096e0339836f3f8c79c4a53f26a0bb6983860e1e6a1f3a2a3282d550d53c3'
+    'EEOP.Contracts.dll' = 'd9e62fa5fe1076c04f77d7edd6ef44751c81674db0d6253904e3c189a04b7089'
 }
 
 $Root = 'C:\ProgramData\EEOP'

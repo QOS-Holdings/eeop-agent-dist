@@ -1,26 +1,38 @@
-# Canonical agent package (eeop-platform ebd9e0b, release sign29-ebd9e0b)
-# The artifact the ROTATION-014 rotation published: the Sprints 27-28 agent line — tray V2 (both-themes
-# glyphs), offline-queue replay with 429 deferral and queue evidence counters, and the Q3 configuration
-# suspension/lease/410-401 client. The MSI's hash and its Authenticode signing record are on the release
-# itself (eeop-agent.msi, msi-signing.json, release-candidate.json). One build, one host, one set of hashes.
-364d4059a24f5d0d11e05198ac7f399c1035dc5859386ebeb390f938d48e5153  eeop-agent-win-x64.zip
-cc10206f76d742520cbcb0b92a6b1d2355bdf3ca97e169e5e3181b52e3d3a1c7  eeop-agent.exe
-bffc40babc47ba09ba205bc22ec37449a52e354c4545235f384439c85834f972  eeop-agent.dll
-0641d868c871c07e8b7610237c2a76ca88dcd9331bc741471f46d5ddb4a0e6d8  EEOP.Contracts.dll
+# Canonical agent package (eeop-platform 225118e, release sign30-225118e)
+# The artifact the ROTATION-015 rotation published: the sign29 agent line with tray V3 — the tray's brand
+# mark drawn as one tile that fills its cell, legible on light and dark themes (#364). The MSI's hash and
+# its Authenticode signing record are on the release itself (eeop-agent.msi, msi-signing.json,
+# release-candidate.json). One build, one host, one set of hashes.
+c73baa424334315c4d84142bdb8a7de368fba39791571f08d1fd787df3fa30a2  eeop-agent-win-x64.zip
+3fedcb0438031549bd6ee2dcd7109b80ed66a1508c399e3d1e3e9fc78cf2e775  eeop-agent.exe
+cea096e0339836f3f8c79c4a53f26a0bb6983860e1e6a1f3a2a3282d550d53c3  eeop-agent.dll
+d9e62fa5fe1076c04f77d7edd6ef44751c81674db0d6253904e3c189a04b7089  EEOP.Contracts.dll
 
 # Release assets published alongside the package, from the same approved candidate (both unchanged
 # since sign28)
 5dfa925ae5279c5cd1635ec7cd013f70481e2a4765adb2bf47c9817b5073aa2a  EEOP-Agent-Install.ps1
 e7e351474c492f246032b8d56db444ac174a19a24ace18de1f738aeac5ad07e9  EEOP-Agent-Service.ps1
 
-# Scripts, current (eeop-platform 1d55ab31) — for the Windows Server 2025 canonical host, and the
+# Scripts, current (eeop-platform abfb624b) — for the Windows Server 2025 canonical host, and the
 # preparation script also accepts -ExpectedOperatingSystem Windows11 as an explicit opt-in for
 # workstation preparation; the operating system is never inferred from the host.
-c1f3a106ba87144b5e16d02372a54ef06c9f2f6652b60b4e84b6a57bda6439ef  EEOP-Gate4-Prepare.ps1
-a093392e9638bd19fa9ffa7c24472bc62e1a5d9a5a9a1d5a458a261e1c893f82  EEOP-Gate4-Enroll.ps1
-d758fbd0d2fd189d372409d71bf968b911adfdc47da1b00e86a07e12c7b37ff4  EEOP-Gate5-Heartbeat.ps1
+2b7602ca9f3b676e58f216a15e245d57077c0e1d2266c046347f205021c3eb54  EEOP-Gate4-Prepare.ps1
+95e972e4a6ccb6f98d0c1b85dcbd2ca54eafad95ec0615c885e2e35709f9477b  EEOP-Gate4-Enroll.ps1
+45f310d456bfed76367822e0aa30917b3375c256f7930a611ed0f82f1e89cf69  EEOP-Gate5-Heartbeat.ps1
 
 # Superseded, kept so earlier evidence stays verifiable. Do not run these.
+# sign29-ebd9e0b package (eeop-platform ebd9e0bf), superseded by the ROTATION-015 rotation: its tray V2
+# theme-variant glyphs render a small dark Q at some theme and scale combinations, fixed by sign30's
+# single full-bleed tile; everything else in the line carries forward unchanged. Its release remains
+# published.
+#   364d4059a24f5d0d11e05198ac7f399c1035dc5859386ebeb390f938d48e5153  eeop-agent-win-x64.zip
+#   cc10206f76d742520cbcb0b92a6b1d2355bdf3ca97e169e5e3181b52e3d3a1c7  eeop-agent.exe
+#   bffc40babc47ba09ba205bc22ec37449a52e354c4545235f384439c85834f972  eeop-agent.dll
+#   0641d868c871c07e8b7610237c2a76ca88dcd9331bc741471f46d5ddb4a0e6d8  EEOP.Contracts.dll
+# Scripts as they stood while they pinned that package (eeop-platform 1d55ab31, dist 1211b3ce):
+#   c1f3a106ba87144b5e16d02372a54ef06c9f2f6652b60b4e84b6a57bda6439ef  EEOP-Gate4-Prepare.ps1
+#   a093392e9638bd19fa9ffa7c24472bc62e1a5d9a5a9a1d5a458a261e1c893f82  EEOP-Gate4-Enroll.ps1
+#   d758fbd0d2fd189d372409d71bf968b911adfdc47da1b00e86a07e12c7b37ff4  EEOP-Gate5-Heartbeat.ps1
 # sign28-ee0e435 package (eeop-platform ee0e4354), superseded by the ROTATION-014 rotation: its single
 # dark-styled tray glyph is illegible on a light Windows 11 flyout, and it predates the offline-queue
 # replay counters and the ruled configuration-lease lifecycle. Its release remains published.
